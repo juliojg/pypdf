@@ -257,8 +257,11 @@ def prepare_cm(ft: DictionaryObject) -> bytes:
     elif isinstance(tu, str) and tu.startswith("/Identity"):
         # the full range 0000-FFFF will be processed
         cm = b"beginbfrange\n<0000> <0001> <0000>\nendbfrange"
+    else:
+        cm = str(tu)
     if isinstance(cm, str):
         cm = cm.encode()
+
     # we need to prepare cm before due to missing return line in pdf printed
     # to pdf from word
     cm = (
